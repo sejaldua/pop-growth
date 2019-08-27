@@ -59,7 +59,7 @@ ani = animation.FuncAnimation(fig, animate, frames=len(overdose[title]), repeat=
 ani.save(city + 'PopGrowth.gif', writer='imagemagick', fps=50)
 ```
 
-The frames keyword argument in the `animation.FuncAnimation` call is probably the most critical part of the above code snippet. The number of frames determines how often animate(i) is going to be called, so in my case, it must correspond to the number of data points to be plotted. Then, in order to actually view the animation object `ani`, it must be saved as a .mp4 or .gif file.
+The `frames` keyword argument in the `animation.FuncAnimation` call is probably the most critical part of the above code snippet. The number of frames determines how often `animate(i)` is going to be called, so in my case, it must correspond to the number of data points to be plotted. Then, in order to actually view the animation object `ani`, it must be saved as a .mp4 or .gif file.
 
 This is how it turned out:
 ![portland pop growth](portlandPopGrowth.gif)

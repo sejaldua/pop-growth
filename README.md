@@ -1,5 +1,5 @@
 # pop-growth
-This project was all about learning how to animate graphs using matplotlib. Just enter a city and the script will generate what I call a "snake graph" depicting population growth over time.
+This project was all about learning how to animate graphs using matplotlib and seaborn. Just enter a city and the script will generate what I call a "snake graph" depicting population growth over time.
 
 Hours spent: 10
 
@@ -62,6 +62,8 @@ ani.save(city + 'PopGrowth.gif', writer='imagemagick', fps=50)
 The `frames` keyword argument in the `animation.FuncAnimation` call is probably the most critical part of the above code snippet. The number of frames determines how often `animate(i)` is going to be called, so in my case, it must correspond to the number of data points to be plotted. Then, in order to actually view the animation object `ani`, it must be saved as a .mp4 or .gif file.
 
 This is how it turned out:
-![portland pop growth](portlandPopGrowth.gif)
-![seattle pop growth](seattlePopGrowth.gif)
+![portland pop growth](PortlandPopGrowth.gif)
+![seattle pop growth](SeattlePopGrowth.gif)
+![austin pop growth](AustinPopGrowth.gif)
+![boston pop growth](BostonPopGrowth.gif)
 

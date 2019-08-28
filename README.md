@@ -1,7 +1,7 @@
 # pop-growth
 This project was all about learning how to animate graphs using matplotlib and seaborn. Just enter a city and the script will generate what I call a "snake graph" depicting population growth over time.
 
-Hours spent: 10
+Hours spent: 20
 
 Topics explored:
 - `matplotlib`

@@ -67,3 +67,72 @@ This is how it turned out:
 ![austin pop growth](AustinPopGrowth.gif)
 ![boston pop growth](BostonPopGrowth.gif)
 
+EXTENSION FEATURE: Comparisions (Multiple Animations, One Figure)
+------
+
+I still wasn't satisfied after doing some single-line animations. I thought to myself, _how cool would it be if I could watch multiple snake-looking lines traversing through the figure like I'm watching a race happen before my eyes, except with data?_. So I decided to go make a new jupyter notebook and see if I could scrape data from multiple websites, make a dataframe with multiple y columns, and then attempt to plot multiple `sns.lineplots` in the same figure.
+
+This is the function that allowed me to accomplish this:
+
+```python
+def make_df(i):
+    # data extraction and data cleaning
+    r = requests.get('http://worldpopulationreview.com/us-cities/' + cities[i] + '-population/')
+    c = r.content
+    soup = BeautifulSoup(c, "lxml")
+    soup
+    main_content = soup.find('div', attrs = {'class': 'section-container clearfix'})
+    main_content
+    rows = main_content.find_all('tr')
+    year = []
+    pop = []
+    rows = rows[1:]
+    for row in rows:
+        row_td = row.find_all('td')
+        str_cells = str(row_td)
+        cleantext = BeautifulSoup(str_cells, "lxml").get_text()
+        cleantext = cleantext[1:-1]
+        text = cleantext.split(', ')
+        year.append(int(text[0]))
+        pop.append(int(text[1].replace(',', '')))
+
+    #make dataframe
+    cities[i] = (cities[i])[0].upper() + (cities[i])[1::]
+    x = np.array(year)
+    y = np.array(pop)
+    XN,YN = augment(x,y,10)
+    data = {'Population': YN, 'Year': XN}
+    augmented = pd.DataFrame(data, columns = ['Year', 'Population'])
+    df1 = augmented
+    df1 = df1[::-1]
+    return df1
+```
+
+I called this function 3 times to make 3 separate dataframes.
+
+```python
+# make a separate dataframe for each city
+dfs = []
+for i in range(3):
+    dfs.append(make_df(i))
+```
+
+Then, I learned a VERY handy trick: merging dataframes!
+
+```python
+from functools import reduce
+df_final = reduce(lambda left,right: pd.merge(left,right,on='Year'), dfs)
+```
+
+This is what the merged dataframe looks like:
+
+![dataframe](dataframe.png)
+
+And this is what the plot looks like once it has finished with the animation:
+
+![comparison](comparison.png)
+
+The actual animation, if you made it this far (thank you for reading if you did!)...
+
+![multiple lines, one fig](test.gif)
+

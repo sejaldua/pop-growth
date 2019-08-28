@@ -1,5 +1,5 @@
 # pop-growth
-This project was all about learning how to animate graphs using matplotlib. Just enter a city and the script will generate what I call a "snake graph" depicting population growth over time.
+This project was all about learning how to animate graphs using matplotlib and seaborn. Just enter a city and the script will generate what I call a "snake graph" depicting population growth over time.
 
 Hours spent: 10
 
@@ -64,4 +64,6 @@ The `frames` keyword argument in the `animation.FuncAnimation` call is probably 
 This is how it turned out:
 ![portland pop growth](portlandPopGrowth.gif)
 ![seattle pop growth](seattlePopGrowth.gif)
+![austin pop growth](AustinPopGrowth.gif)
+![boston pop growth](BostonPopGrowth.gif)
 
